@@ -1,12 +1,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: simple-service
+  labels:
+    app: nginx
+  name: nginx-service
 spec:
-  type: ClusterIP
-  selector:
-    app: trivial-go-web-app
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
+  - port: 80 #change to 80
+    protocol: TCP
+    targetPort: 80 #change to 80
+    nodePort: 30334
+  selector:
+    app: nginx
+  type: NodePort
